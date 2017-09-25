@@ -7,13 +7,12 @@ class TestIPAToARPAbet(unittest.TestCase):
 
     def setUp(self):
         self._ipa_convertor = PhoneticAlphabet2ARPAbetConvertor()
-        print(Stress.No.mark_arpabet())
 
     def test_convertor(self):
         f = self._ipa_convertor.convert('faʊ(hh)nd')
         self.assertEqual(f, 'F AW1 N D')
         # ri'trai
-        f = self._ipa_convertor.convert('ri\'traɪ')
+        f = self._ipa_convertor.convert('riˈtraɪ')
         self.assertEqual(f, 'R IY0 T R AY1')
 
         # ˈɛniˌwʌn, -wən

@@ -136,10 +136,6 @@ AB	Description
  :3 or .	Fall-rise or non-term juncture
 '''
 
-no_stress_arpabet = 0
-primary_stress_arpabet = 1
-secondary_stress_arpabet = 2
-
 # ˈ
 primary_stress_ipa = ["'", "ˈ"]
 secondary_stress_ipa = ['ˌ']

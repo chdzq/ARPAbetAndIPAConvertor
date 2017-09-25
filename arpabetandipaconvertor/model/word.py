@@ -28,15 +28,22 @@ class Word:
         translations = ""
 
         for i, syllable in enumerate(self._syllable_list):
-            translations += syllable.translate_to_american_phonetic_alphabet(hide_stress_mark=0 >= self._stress_count)
+            translations += syllable.translate_to_american_phonetic_alphabet(hide_stress_mark=0 == i and 1 >= self._stress_count)
 
         return translations
 
     def translate_to_english_phonetic_alphabet(self, need_show_stress=False):
         translations = ""
 
-        for syllable in self._syllable_list:
-            translations += syllable.translate_to_english_phonetic_alphabet(hide_stress_mark=0 >= self._stress_count)
+        for i, syllable in enumerate(self._syllable_list):
+            translations += syllable.translate_to_english_phonetic_alphabet(hide_stress_mark=0 == i and 1 >= self._stress_count)
 
+        return translations
+
+    def translate_to_international_phonetic_alphabet(self, need_show_stress=False):
+        translations = ""
+
+        for i, syllable in enumerate(self._syllable_list):
+            translations += syllable.translate_to_english_phonetic_alphabet(hide_stress_mark=0 == i and 1 >= self._stress_count)
 
         return translations
