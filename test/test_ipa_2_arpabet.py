@@ -1,13 +1,17 @@
 import unittest
-from arpabetandipaconvertor.ipa2arpabet import IPA2ARPAbetConvertor
+from arpabetandipaconvertor.phoneticarphabet2arpabet import PhoneticAlphabet2ARPAbetConvertor
+from arpabetandipaconvertor.model.syllable import Stress
+
+
 class TestIPAToARPAbet(unittest.TestCase):
 
     def setUp(self):
-        self._ipa_convertor = IPA2ARPAbetConvertor()
+        self._ipa_convertor = PhoneticAlphabet2ARPAbetConvertor()
+        print(Stress.No.mark_arpabet())
 
     def test_convertor(self):
-        f = self._ipa_convertor.convert('faʊnd')
-        self.assertEqual(f, 'F AW0 N D')
+        f = self._ipa_convertor.convert('faʊ(hh)nd')
+        self.assertEqual(f, 'F AW1 N D')
         # ri'trai
         f = self._ipa_convertor.convert('ri\'traɪ')
         self.assertEqual(f, 'R IY0 T R AY1')
@@ -17,6 +21,11 @@ class TestIPAToARPAbet(unittest.TestCase):
         self.assertEqual(f, 'EH1 N IY0 W AH2 N')
         #kʊd
         f = self._ipa_convertor.convert('kʊd')
-        self.assertEqual(f, 'K UH0 D')
+        self.assertEqual(f, 'K UH1 D')
+
+        f = self._ipa_convertor.convert("'wilkinsn")
+        self.assertEqual(f, 'W IY1 L K IY0 N S N')
+
+
 
 
