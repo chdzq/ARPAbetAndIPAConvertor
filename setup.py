@@ -53,14 +53,13 @@ if __name__ == "__main__":
             if line:
                 REQUIRES.append(line)
     except:
-        print("'requirements.txt' not found!")
         REQUIRES = list()
 
     setup(
         name=PKG_NAME,
         description='ARPAbet和ipa之间互相转换的工具',
         long_description=LONG_DESCRIPTION,
-        version='0.0.1',
+        version='1.0.1',
         author='zhanqgi',
         author_email='zhangqi.248@gmail.com',
         packages=PACKAGES,
