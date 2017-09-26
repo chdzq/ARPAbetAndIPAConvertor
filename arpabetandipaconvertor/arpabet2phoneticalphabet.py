@@ -45,6 +45,9 @@ class ARPAbet2PhoneticAlphabetConvertor:
                     syllable = Syllable()
             else:
                 last_num = arphabe_phoneme[-1]
+                if not last_num.isdigit():
+                    raise PhonemeError("%s 匹配不到合适的音标" % arphabe_phoneme)
+
                 stress = self._stress_libs_dic.get(last_num)
 
                 before = arphabe_phoneme[:-1]
@@ -56,15 +59,15 @@ class ARPAbet2PhoneticAlphabetConvertor:
                     if stress:
                         syllable.stress = stress
                     else:
-                        raise PhonemeError("arpabet %s 的重音标识不对" % arphabe_phoneme)
+                        raise PhonemeError("%s 的重音标识不对，标记成了 %s" % (before, last_num))
 
                     if phoneme.is_vowel:
                         word.add_syllable(syllable=syllable)
                         syllable = Syllable()
                     else:
-                        raise PhonemeError("arpabet %s 的重音标识位置不对，当前 %s 不是重音" % (arphabe_phoneme, before))
+                        raise PhonemeError("%s 重音标识位置不对，当前 %s 不是元音" % (arphabe_phoneme, before))
                 else:
-                    raise PhonemeError("arpabet %s 找不到" % arphabe_phoneme)
+                    raise PhonemeError("%s 匹配不到合适的音标" % before)
 
         word.add_syllable(syllable=syllable)
 

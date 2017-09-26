@@ -4,13 +4,13 @@
 音节
 '''
 
+from arpabetandipaconvertor.excepts import PhonemeError
 from arpabetandipaconvertor.model.stress import Stress
-
 
 class Syllable:
 
     def __init__(self):
-        self._stress = Stress.No
+        self._stress = None
         self._phoneme_list = []
         self._have_vowel = False
 
@@ -34,6 +34,8 @@ class Syllable:
             return
         self._phoneme_list.append(phoneme)
         if phoneme.is_vowel:
+            if not self.stress:
+                self.stress = Stress.No
             self._have_vowel = True
 
     def translate_to_arpabet(self):
@@ -41,6 +43,7 @@ class Syllable:
         转换成arpabet
         :return:
         '''
+
         translations = []
 
         for phoneme in self._phoneme_list:
@@ -56,9 +59,10 @@ class Syllable:
         转换成美音音。只要一个元音的时候需要隐藏重音标识
         :param hide_stress_mark:
         :return:
+
         '''
+
         translations = self.stress.mark_ipa() if (not hide_stress_mark) and self.have_vowel else ""
-        print(translations + ("是" if self.have_vowel else "否") + self.stress.name)
 
         for phoneme in self._phoneme_list:
             translations += phoneme.american
@@ -71,6 +75,7 @@ class Syllable:
         :param hide_stress_mark:
         :return:
         '''
+
         translations = self.stress.mark_ipa() if (not hide_stress_mark) and self.have_vowel else ""
 
         for phoneme in self._phoneme_list:
@@ -84,6 +89,7 @@ class Syllable:
         :param hide_stress_mark:
         :return:
         '''
+
         translations = self.stress.mark_ipa() if (not hide_stress_mark) and self.have_vowel else ""
 
         for phoneme in self._phoneme_list:

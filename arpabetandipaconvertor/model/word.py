@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from arpabetandipaconvertor.model.syllable import Stress
+from arpabetandipaconvertor.model.stress import Stress
 
 class Word:
 

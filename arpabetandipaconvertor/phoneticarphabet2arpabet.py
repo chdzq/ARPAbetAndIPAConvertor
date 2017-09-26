@@ -85,11 +85,12 @@ class PhoneticAlphabet2ARPAbetConvertor:
 
         word = Word()           #单词
         syllable = Syllable()   #音节
+        temp_syllable_str = ""
 
         for index, ch in enumerate(arphabet):
             if self._is_stop(c=ch):
                 break
-
+            temp_syllable_str += ch
             if skip_stack:
                 if ch == self._skip_dic.get(skip_stack[-1]):
                     skip_stack.pop()
@@ -102,17 +103,20 @@ class PhoneticAlphabet2ARPAbetConvertor:
             stress = self._stress_libs_dic.get(ch, None)
             if stress:
                 if (not last_phoneme) and index > 0:
-                    raise PhonemeError('存在不能识别的音标' + temp_ch)
+                    raise PhonemeError('存在不能识别的音标 %s' % temp_ch)
                 else:
                     '''
                     遇到重音标识，说明前面是是一个音节，添加到word中，并清空last_phoneme及temp_ch
                     '''
                     if last_phoneme:
                         syllable.add_phoneme(phoneme=last_phoneme)
+                        if not syllable.have_vowel:
+                            raise PhonemeError("%s 重音标识不合适，%s前一个音节没有元音！" % (temp_syllable_str, ch))
                         word.add_syllable(syllable=syllable)
                         syllable = Syllable()
                     last_phoneme = None
                     temp_ch = ''
+                    temp_syllable_str = ch
                     syllable.stress = stress
                     continue
 
@@ -122,12 +126,13 @@ class PhoneticAlphabet2ARPAbetConvertor:
 
             if last_phoneme and (not temp_phoneme):
                 '''
-                说明前面是是一个音节
+                说明前面是是一个完整音标
                 '''
                 syllable.add_phoneme(last_phoneme)
                 if last_phoneme.is_vowel:
                     word.add_syllable(syllable)
                     syllable = Syllable()
+                    temp_syllable_str = ch
 
                 temp_ch = ch
                 last_phoneme = self._find_phoneme_in_arphabet_list(phoneme_string=temp_ch,
@@ -138,8 +143,10 @@ class PhoneticAlphabet2ARPAbetConvertor:
 
         if last_phoneme:
             syllable.add_phoneme(last_phoneme)
+            if syllable.stress and not syllable.have_vowel:
+                raise PhonemeError("%s 有重音标识但并没有元音！" % temp_syllable_str)
             word.add_syllable(syllable)
         else:
-            raise PhonemeError('存在不能识别的音标' + temp_ch)
+            raise PhonemeError('存在不能识别的音标 %s' % temp_ch)
 
         return word.translate_to_arpabet()
