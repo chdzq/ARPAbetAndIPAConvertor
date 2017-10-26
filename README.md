@@ -1,6 +1,8 @@
 
-# 用途
+# 用途`purpose`
 arpabetandipaconvertor 是用于IPA和ARPAbet之间互转
+
+arpabetandipaconvertor is used to switch between IPA and ARPAbet
 
 vowels
 
@@ -62,7 +64,7 @@ y	    	|   Y	       	|  j	|  yachting|   Y  | j     | 英 [ˈjɒtɪŋ]      美 
 z	    	|   Z	       	|  z	|  zoo     |   Z  | z     | 英 [zu:]         美 [zu]       |  Z UW1  
 Z	    	|   ZH	       	|  ʒ	|  pleasure|   ZH | ʒ     | 英 [ˈpleʒə(r)]   美 [ˈplɛʒɚ]   |  P L EH1 ZH ER0
 
-# 用法
+# 用法`use`
 
  1、IPA -> ARPAbet
     
@@ -74,12 +76,12 @@ Z	    	|   ZH	       	|  ʒ	|  pleasure|   ZH | ʒ     | 英 [ˈpleʒə(r)]   �
     self.assertEqual(f, 'ˈwilkinsn')
  
  
-# 安装
+# 安装`install`
     
     pip install arpabetandipaconvertor
 
 
-# 参考
+# 参考`reference`
 
 1、[ARPAbet-维基百科](https://en.wikipedia.org/wiki/ARPABET)
 
