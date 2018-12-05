@@ -110,7 +110,7 @@ consonants = [Phoneme(arpabet='B',  american='b',  english='b',  ipa='b',  is_vo
               Phoneme(arpabet='Q',  american='ʔ',  english='ʔ',  ipa='ʔ',  is_vowel=False),
               Phoneme(arpabet='R',  american='r',  english='r',  ipa='ɹ',  is_vowel=False),
               Phoneme(arpabet='S',  american='s',  english='s',  ipa='s',  is_vowel=False),
-              Phoneme(arpabet='AE', american='æ',  english='æ',  ipa='æ',  is_vowel=False),
+              Phoneme(arpabet='SH', american='ʃ',  english='ʃ',  ipa='ʃ',  is_vowel=False),
               Phoneme(arpabet='T',  american='t',  english='t',  ipa='t',  is_vowel=False),
               Phoneme(arpabet='TH', american='θ',  english='θ',  ipa='θ',  is_vowel=False),
               Phoneme(arpabet='V',  american='v',  english='v',  ipa='v',  is_vowel=False),
