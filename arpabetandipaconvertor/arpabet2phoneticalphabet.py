@@ -50,24 +50,24 @@ class ARPAbet2PhoneticAlphabetConvertor:
 
                 stress = self._stress_libs_dic.get(last_num)
 
-                before = arphabe_phoneme[:-1]
+                pre = arphabe_phoneme[:-1]
 
-                phoneme = self._arpabet_tree.get(before)
+                phoneme = self._arpabet_tree.get(pre)
 
                 if phoneme:
                     syllable.add_phoneme(phoneme=phoneme)
                     if stress:
                         syllable.stress = stress
                     else:
-                        raise PhonemeError("%s 的重音标识不对，标记成了 %s" % (before, last_num))
+                        raise PhonemeError("%s 的重音标识不对，标记成了 %s" % (pre, last_num))
 
                     if phoneme.is_vowel:
                         word.add_syllable(syllable=syllable)
                         syllable = Syllable()
                     else:
-                        raise PhonemeError("%s 重音标识位置不对，当前 %s 不是元音" % (arphabe_phoneme, before))
+                        raise PhonemeError("%s 重音标识位置不对，当前 %s 不是元音" % (arphabe_phoneme, pre))
                 else:
-                    raise PhonemeError("%s 匹配不到合适的音标" % before)
+                    raise PhonemeError("%s 匹配不到合适的音标" % pre)
 
         word.add_syllable(syllable=syllable)
 
